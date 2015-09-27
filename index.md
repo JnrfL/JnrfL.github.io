@@ -8,6 +8,7 @@ highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : [bootstrap]  # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
+encoding    : UTF-8
 ---
 
 ## __Overview__
