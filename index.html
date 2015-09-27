@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developing Data Products Project Pitch</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Developing Data Products Project Pitch">
+  <meta name="author" content="Jean Rafael Angeles">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Developing Data Products Project Pitch</h1>
+    <h2>ROAS App</h2>
+    <p>Jean Rafael Angeles<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2><strong>Overview</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <h3><em>Google Analytics</em> is a useful tool that provides you insights for your website. There are two versions currently available. The free standard <strong>Google Analytics(GA)</strong> and the subscription based <strong>Google Analytics Premium(GAP)</strong>.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2><strong>The Problem</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Sadly GAP is a costly product. It&#39;s suited for sites with large traffic. GAP also has analytics features not present in GA. One of such is the <em>ROI Analysis Tool</em>.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2><strong>Here&#39;s An Alternative</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>The <em>ROAS app</em> is basically an indepented ROI Analysis Tool. It enables standard GA users to experience the ROI Analysis Tool without the need for GAP subscription.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2><strong>Prior Data Cleaning</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Here&#39;s a sample of the state the data coming from GA looks like:</p>
+
+<pre><code>##   MCF.Channel.Grouping        Spend Conversions Conversion.Value
+## 1          Paid Search A$215,093.54         401     A$169,511.05
+## 2              Display  A$55,561.20         335      A$16,025.66
+## 3       Organic Search  A$16,000.68       1,000      A$15,709.03
+## 4               Direct        â???&quot;       1,111   A$1,208,675.71
+## 5             Referral        â???&quot;         105     A$911,730.32
+## 6              (Other)        â???&quot;           8      A$69,483.56
+</code></pre>
+
+<p>The raw data isn&#39;t readily available for the needed computation so data cleaning codes.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2><strong>After Data Cleaning</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Here&#39;s what the data looks like after cleaning it.</p>
+
+<pre><code>##   MCF.Channel.Grouping     Spend Conversions Conversion.Value      ROAS
+## 1          Paid Search 215093.54         401        169511.05 0.7880806
+## 2              Display  55561.20         335         16025.66 0.2884326
+## 3       Organic Search  16000.68        1000         15709.03 0.9817726
+## 4               Direct      0.00        1111       1208675.71       Inf
+## 5             Referral      0.00         105        911730.32       Inf
+## 6              (Other)      0.00           8         69483.56       Inf
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2><strong>Computations</strong></h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Here&#39;s the computations that has been formatted as well.</p>
+
+<p><strong>Spend</strong></p>
+
+<pre><code>## [1] &quot;$286,655.4&quot;
+</code></pre>
+
+<p><strong>Conversions</strong></p>
+
+<pre><code>## [1] &quot;3,020&quot;
+</code></pre>
+
+<p><strong>Conversion Value</strong></p>
+
+<pre><code>## [1] &quot;$2,440,296&quot;
+</code></pre>
+
+<p><strong>ROAS</strong></p>
+
+<pre><code>## [1] &quot;8.51%&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='<strong>Overview</strong>'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='<strong>The Problem</strong>'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='<strong>Here&#39;s An Alternative</strong>'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='<strong>Prior Data Cleaning</strong>'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='<strong>After Data Cleaning</strong>'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='<strong>Computations</strong>'>
+         6
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

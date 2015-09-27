@@ -1,0 +1,103 @@
+---
+title       : Developing Data Products Project Pitch
+subtitle    : ROAS App
+author      : Jean Rafael Angeles
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [bootstrap]  # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+
+## __Overview__
+
+### _Google Analytics_ is a useful tool that provides you insights for your website. There are two versions currently available. The free standard __Google Analytics(GA)__ and the subscription based __Google Analytics Premium(GAP)__.
+
+--- .class #id 
+
+## __The Problem__
+
+### Sadly GAP is a costly product. It's suited for sites with large traffic. GAP also has analytics features not present in GA. One of such is the _ROI Analysis Tool_.
+
+--- 
+
+## __Here's An Alternative__
+
+### The _ROAS app_ is basically an indepented ROI Analysis Tool. It enables standard GA users to experience the ROI Analysis Tool without the need for GAP subscription.
+
+---
+
+## __Prior Data Cleaning__
+
+Here's a sample of the state the data coming from GA looks like:
+
+```{r, echo=FALSE}
+MCF.Channel.Grouping <- c('Paid Search','Display','Organic Search','Direct','Referral','(Other)','Email','Social Network','')
+Spend <- c('A$215,093.54','A$55,561.20','A$16,000.68','â???"','â???"','â???"','â???"','â???"','â???')
+Conversions <- c('401','335','1,000','1,111','105','8','55','5','3,020')
+Conversion.Value <- c('A$169,511.05','A$16,025.66','A$15,709.03','A$1,208,675.71','A$911,730.32','A$69,483.56','A$41,000.08','A$8,160.89','A$3,415,767.3')
+data <- data.frame(MCF.Channel.Grouping,Spend,Conversions,Conversion.Value,stringsAsFactors = FALSE)
+head(data)
+```
+
+The raw data isn't readily available for the needed computation so data cleaning codes.
+
+---
+
+## __After Data Cleaning__
+
+Here's what the data looks like after cleaning it.
+
+```{r, echo=FALSE, warning=FALSE}
+    data <- data[which(data$MCF.Channel.Grouping!=""),]
+    data$Spend <- gsub("A\\$|,","",data$Spend)
+    data$Spend <- as.numeric(data$Spend)
+    data$Spend[is.na(data$Spend)] <- 0
+    data$Conversions <- gsub("A|\\$|,","",data$Conversions)
+    data$Conversions <- as.numeric(data$Conversions)
+    data$Conversions[is.na(data$Conversions)] <- 0
+    data$Conversion.Value <- gsub("A|\\$|,","",data$Conversion.Value)
+    data$Conversion.Value <- as.numeric(data$Conversion.Value)
+    data$Conversion.Value[is.na(data$Conversion.Value)] <- 0
+    data$ROAS <- data$Conversion.Value/data$Spend
+    head(data)
+```
+
+---
+
+## __Computations__
+
+Here's the computations that has been formatted as well.
+
+__Spend__
+```{r, echo=FALSE}
+spend_sum <- sum(data$Spend)
+spend_sum_display <- prettyNum(spend_sum, big.mark=",",preserve.width="none")
+spend_sum_display <- paste0("$",spend_sum_display)
+spend_sum_display
+
+```
+
+__Conversions__
+```{r, echo=FALSE}
+conversions_sum <- sum(data$Conversions)
+conversions_sum_display <- prettyNum(conversions_sum, big.mark=",",preserve.width="none")
+conversions_sum_display
+```
+
+__Conversion Value__
+```{r, echo=FALSE}
+conversion.value_sum <- sum(data$Conversion.Value)
+conversion.value_sum_display <- prettyNum(conversion.value_sum, big.mark=",",preserve.width="none")
+conversion.value_sum_display <- paste0("$",conversion.value_sum_display)
+conversion.value_sum_display
+```
+
+__ROAS__
+```{r, echo=FALSE}
+roas_sum <- conversion.value_sum/spend_sum
+roas_sum <- sprintf("%1.2f%%", roas_sum)
+roas_sum <- prettyNum(roas_sum, big.mark=",",preserve.width="none")
+roas_sum
+```
